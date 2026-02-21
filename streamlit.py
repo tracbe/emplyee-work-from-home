@@ -2,10 +2,10 @@ import streamlit as st
 import joblib 
 
 #loader
-model = joblib.load("C:/Users/Pc SToRe/Desktop/adam/work_from_home/model_work_from_home.pkl")
-y = joblib.load("C:/Users/Pc SToRe/Desktop/adam/work_from_home/y (1).pkl")
-lebel_day_type = joblib.load("C:/Users/Pc SToRe/Desktop/adam/work_from_home/day_type.pkl")
-scaler = joblib.load("C:/Users/Pc SToRe/Desktop/adam/work_from_home/scaler.pkl")
+model = joblib.load("model_work_from_home.pkl")
+y = joblib.load("y (1).pkl")
+lebel_day_type = joblib.load("day_type.pkl")
+scaler = joblib.load("scaler.pkl")
 
 
 st.set_page_config(page_title = "emplyee work from home" , page_icon= "👨‍💻")
@@ -32,4 +32,5 @@ input_scale = scaler.transform([[day_type_lable ,work_hours,screen_time_hours,me
 if st.button("pred"):
     pred = model.predict(input_scale)
     output_text =y.inverse_transform(pred)[0]
+
     st.success(output_text)
